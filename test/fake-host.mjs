@@ -18,6 +18,8 @@ export async function loadPlugin() {
   const registered = [];
   /** @type {any[]} */
   const sections = [];
+  /** @type {Array<() => void>} */
+  const disposers = [];
   const fakeCtx = {
     tools: {
       register(definition) {
@@ -32,7 +34,9 @@ export async function loadPlugin() {
       },
     },
     effect(callback) {
-      return callback();
+      const disposer = callback();
+      if (typeof disposer === "function") disposers.push(disposer);
+      return () => {};
     },
     on() {
       return () => {};
@@ -46,6 +50,17 @@ export async function loadPlugin() {
     registered,
     sections,
     byName: new Map(registered.map((tool) => [tool.name, tool])),
+    /** Run the plugin's cleanup hooks (closes the bridge child process). */
+    async dispose() {
+      for (const disposer of disposers.splice(0)) {
+        try {
+          disposer();
+        } catch {
+          // Cleanup is best effort in tests.
+        }
+      }
+      await new Promise((resolve) => setTimeout(resolve, 300));
+    },
   };
 }
 

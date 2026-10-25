@@ -6,6 +6,7 @@ DAW 集成五个工具。**
 
 中文 | [English](README.md)
 
+[![CI](https://github.com/Making-acid/dsh-synthv-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/Making-acid/dsh-synthv-studio/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![DSH](https://img.shields.io/badge/DSH-%E2%89%A50.2.0--rc.1-6c8cff.svg)](https://github.com/deepseek-ai/deepseek-harness)
 [![Platform](https://img.shields.io/badge/platform-Windows-0078d4.svg)](#环境要求)

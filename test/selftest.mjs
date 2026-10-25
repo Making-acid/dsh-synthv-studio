@@ -34,7 +34,8 @@ const expectedTools = [
   "synthv_daw",
 ];
 
-const { plugin, registered, sections, byName } = await loadPlugin();
+const host = await loadPlugin();
+const { plugin, registered, sections, byName } = host;
 check(Array.isArray(plugin.inject) && plugin.inject.includes("tools"), "plugin exports inject");
 check(typeof plugin.apply === "function", "plugin exports apply()");
 check(sections.length === 1 && sections[0].name === "tool:synthv-studio", "prompt section registered");
@@ -130,4 +131,5 @@ if (detection.ok) {
 } else {
   console.log("Synthesizer V Studio 2 Pro is not installed on this machine; discovery checks ran in the negative path.");
 }
+await host.dispose();
 process.exitCode = failures === 0 ? 0 : 1;

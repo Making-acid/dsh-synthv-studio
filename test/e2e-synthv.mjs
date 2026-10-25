@@ -14,7 +14,8 @@
 import { loadPlugin } from "./fake-host.mjs";
 
 const write = process.argv.includes("--write");
-const { byName } = await loadPlugin();
+const host = await loadPlugin();
+const { byName } = host;
 let failures = 0;
 
 /** @param {string} name @param {Record<string, unknown>} args */
@@ -63,6 +64,8 @@ try {
 } catch (error) {
   failures += 1;
   console.error(`\nE2E threw: ${error instanceof Error ? error.message : String(error)}`);
+} finally {
+  await host.dispose();
 }
 
 console.log(`\nE2E: ${failures === 0 ? "OK" : `${failures} failure(s)`}`);
