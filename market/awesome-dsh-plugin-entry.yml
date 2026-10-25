@@ -1,0 +1,10 @@
+# Entry for awesome-dsh-plugin
+# Target path in that repository:
+#   data/plugins/Making-acid__dsh-synthv-studio.yml
+url: https://github.com/Making-acid/dsh-synthv-studio
+name: Making-acid/dsh-synthv-studio
+category: voice
+description:
+  en: Connects a local Synthesizer V Studio 2 Pro to the agent through its own Lua script API, with five tools for discovery, a persistent bridge, voice composition, note editing and DAW (VST3/ARA + MIDI) integration.
+  zh: 通过 Synthesizer V Studio 2 Pro 自带的 Lua 脚本 API 把它接入 Agent，提供自动发现、常驻桥、演唱创作、音符编辑与 DAW（VST3/ARA + MIDI）集成五个工具。
+icon: https://raw.githubusercontent.com/Making-acid/dsh-synthv-studio/main/assets/icon-180.png

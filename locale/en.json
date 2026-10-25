@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Synthesizer V Studio 2 Pro",
+    "description": "Connect to a local Synthesizer V Studio 2 Pro: discovery, persistent Lua bridge, vocal composition and DAW (VST3/ARA + MIDI) integration."
+  }
+}

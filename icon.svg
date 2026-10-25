@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Synthesizer V Studio">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6c8cff"/>
+      <stop offset="1" stop-color="#b06cff"/>
+    </linearGradient>
+  </defs>
+  <rect x="3" y="3" width="58" height="58" rx="14" fill="url(#g)"/>
+  <path d="M20 42V26a4 4 0 0 1 8 0v16a4 4 0 0 1-8 0Zm14 6V20a4 4 0 0 1 8 0v28a4 4 0 0 1-8 0Z" fill="#fff" opacity="0.95"/>
+  <circle cx="24" cy="47" r="2.6" fill="#fff"/>
+  <circle cx="38" cy="15" r="2.6" fill="#fff"/>
+  <path d="M28 47h6M42 15h6" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+</svg>

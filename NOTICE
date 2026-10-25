@@ -1,0 +1,33 @@
+dsh-synthv-studio
+Copyright 2026
+
+This product includes software developed by the SynthVCopilot project
+(https://github.com/SynthVCopilot/synthv-agent-bridge, Apache-2.0).
+
+Vendored components
+-------------------
+
+1. SynthV Agent Bridge runtime (server + in-app Lua executor)
+   Source: https://github.com/SynthVCopilot/synthv-agent-bridge
+   License: Apache-2.0
+   - server/server.bundle.mjs
+     Produced from the upstream `dist/src/cli.js` entry with:
+       esbuild dist/src/cli.js --bundle --platform=node --format=esm \
+         --target=node20 --outfile=server.bundle.mjs
+     The bundle embeds the upstream runtime and its runtime dependencies
+     (@modelcontextprotocol/sdk, zod). No source changes were made.
+   - synthv/SynthVAgentBridge.lua
+   - synthv/SynthVAgentSidebar.lua
+   - synthv/StopSynthVAgentBridge.lua
+     Upstream build templates. This plugin substitutes the
+     "__SYNTHV_AGENT_EXECUTOR_BUILD_ID__" / "__SYNTHV_AGENT_SIDEBAR_BUILD_ID__"
+     markers at install time using the upstream algorithm
+     (sv3-lua-<version>-sha256(template)) and writes the upstream-compatible
+     install manifest into the IPC directory. This is required for the Node
+     server and the in-app executor to agree on the same build identity.
+
+2. DSH Host integration, discovery, composition and DAW tooling in lib/ are
+   original work of this plugin and are licensed Apache-2.0 (see LICENSE).
+
+No upstream trademark rights are granted. "Synthesizer V" and
+"Synthesizer V Studio 2 Pro" are products of Dreamtonics Co., Ltd.

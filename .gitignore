@@ -1,0 +1,15 @@
+# Build/test artifacts
+node_modules/
+.build/
+*.log
+*.tmp
+*.tgz
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local end-to-end outputs
+test/out/

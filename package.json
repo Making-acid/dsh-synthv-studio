@@ -1,0 +1,70 @@
+{
+  "name": "dsh-synthv-studio",
+  "version": "0.1.0",
+  "description": "DSH plugin for a local Synthesizer V Studio 2 Pro: discovery, a persistent in-app Lua bridge, vocal composition, advanced editing, and DAW (VST3/ARA + MIDI) integration.",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json"
+  },
+  "icon": "./icon.svg",
+  "files": [
+    "lib",
+    "server",
+    "synthv",
+    "locale",
+    "assets",
+    "screenshots.json",
+    "cordis.patch.yml",
+    "icon.svg",
+    "README.md",
+    "README.zh.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "synthesizer-v",
+    "synthv",
+    "vocal-synthesis",
+    "singing",
+    "music",
+    "daw",
+    "vst3",
+    "ara",
+    "midi"
+  ],
+  "author": "Making-acid",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Making-acid/dsh-synthv-studio.git"
+  },
+  "homepage": "https://github.com/Making-acid/dsh-synthv-studio#readme",
+  "bugs": {
+    "url": "https://github.com/Making-acid/dsh-synthv-studio/issues"
+  },
+  "engines": {
+    "node": ">=20",
+    "dsh": ">=0.2.0-rc.1"
+  },
+  "scripts": {
+    "test": "node test/selftest.mjs",
+    "test:mcp": "node test/mcp-handshake.mjs",
+    "test:e2e": "node test/e2e-synthv.mjs"
+  },
+  "meta": {
+    "title": "Synthesizer V Studio 2 Pro",
+    "description": "连接本机 Synthesizer V Studio 2 Pro：自动发现安装、常驻脚本桥、AI 演唱创作与 DAW（VST3/ARA + MIDI）集成。"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

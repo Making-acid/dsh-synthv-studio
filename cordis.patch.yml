@@ -1,0 +1,6 @@
+# dsh-synthv-studio — DSH bundle patch
+# Inserts the Host plugin that owns SynthV discovery, the in-app Lua bridge
+# lifecycle, vocal composition and DAW integration tools.
+- insert:
+    - id: synthv-studio
+      name: dsh-synthv-studio
