@@ -46,7 +46,11 @@ for (const name of expectedTools) {
 }
 
 const validator = await loadHarnessSchemaValidator();
-check(validator !== null, "Harness JSON-schema validator found (optional)", "skipped outside DSH install");
+if (validator) {
+  console.log("INFO  DSH JSON-schema validator found; validating tool schemas against the registry subset");
+} else {
+  console.log("INFO  DSH JSON-schema validator not found (outside a DSH install); registry-subset validation skipped");
+}
 
 for (const toolDefinition of registered) {
   check(
