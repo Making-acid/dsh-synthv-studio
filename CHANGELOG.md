@@ -6,6 +6,38 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-11-09
+
+Compatibility pass for the DSH 0.2.1 / 0.2.2 line (upstream latest: `0.2.2-rc.1`).
+
+### Changed
+
+- `engines.dsh` is now `>=0.2.0-rc.2 <0.3.0-0` (was an open-ended `>=0.2.0-rc.1`). DSH 0.2.1
+  started preferring `engines.dsh` for third-party plugin compatibility, and an explicit
+  `<0.3.0-0` ceiling keeps a future breaking 0.3 from being treated as supported.
+- MCP `clientInfo` version follows the package (`0.1.1`).
+- README / README.zh requirements state the verified DSH floor and that DSH itself needs
+  Node ≥ 24.9 from 0.2.2 on.
+
+### Added
+
+- `scripts/check-dsh.mjs` (`npm run test:dsh`): validates the manifest, the five tool
+  definitions against the **installed Host's own** `@deepseek-ai/dsh-tools` schema contract,
+  and that `engines.dsh` covers the running DSH version. Read-only; skips cleanly when no
+  DSH installation is present.
+
+### Verified against DSH 0.2.2-rc.1
+
+No API change was needed:
+
+- `tools.register(definition, options)` with `output: { schema, render }` and a disposer is
+  unchanged; all five tool definitions pass the 0.2.2 schema-subset validator.
+- `ctx.systemPrompt.section({ name, order, text })` and `ctx.effect()` / `ctx.on()` still
+  behave as before under Cordis 4.1.0 (the plugin also tolerates a context without
+  `effect`, keeping the old `ctx.on('dispose')` fallback).
+- `cordis.patch.yml` rows (`insert`) remain the supported Loader 1.1.0 / Include 1.1.0 patch
+  format.
+
 ## [0.1.0] - 2026-10-25
 
 ### Added

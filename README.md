@@ -8,7 +8,7 @@ persistent bridge, vocal composition, note editing and DAW integration.**
 
 [![CI](https://github.com/Making-acid/dsh-synthv-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/Making-acid/dsh-synthv-studio/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
-[![DSH](https://img.shields.io/badge/DSH-%E2%89%A50.2.0--rc.1-6c8cff.svg)](https://github.com/deepseek-ai/deepseek-harness)
+[![DSH](https://img.shields.io/badge/DSH-%E2%89%A50.2.0--rc.2-6c8cff.svg)](https://github.com/deepseek-ai/deepseek-harness)
 [![Platform](https://img.shields.io/badge/platform-Windows-0078d4.svg)](#requirements)
 [![Synthesizer V](https://img.shields.io/badge/Synthesizer%20V%20Studio%202%20Pro-2.1.2%2B-b06cff.svg)](#requirements)
 
@@ -27,10 +27,10 @@ the only authority for project state.
   probing are Windows-specific).
 - **Synthesizer V Studio 2 Pro 2.1.2 or newer**, installed normally, with a
   project open. Verified with 2.2.1.
-- **DeepSeek Harness with `dsh` ≥ 0.2.0-rc.1** (verified on the 0.2.0-rc.2
-  runtime shipped with DSH Desktop Next 2.0.17-next).
+- **DeepSeek Harness with `dsh` ≥ 0.2.0-rc.2** (verified on the 0.2.0-rc.2 runtime shipped
+  with DSH Desktop Next 2.0.17-next, and against the 0.2.2-rc.1 plugin contracts).
 - Node.js 20+ available to the DSH Host (the bundled bridge server is a plain
-  Node script).
+  Node script). Note that DSH itself requires Node ≥ 24.9 from 0.2.2 on.
 - Optionally any VST3 host (REAPER, Zrythm, Cubase, Studio One, …) for DAW work.
 
 ## Install
@@ -160,7 +160,15 @@ node test/selftest.mjs          # offline: plugin surface, schemas, pure logic
 node test/mcp-handshake.mjs     # offline: bundled server MCP handshake
 node test/e2e-synthv.mjs        # needs SynthV + bridge; dry run by default
 node test/e2e-synthv.mjs --write
+
+node scripts/check-dsh.mjs      # manifest + the five tools against the installed
+                                # Host's own dsh-tools contract, and engines.dsh
 ```
+
+`scripts/check-dsh.mjs` (`npm run test:dsh`) only reads the DSH installation on this
+machine — it installs nothing and skips cleanly in CI. It applies the same checks the
+Host runs at `tools.register()` time, so after a DSH upgrade it answers "will this
+plugin still load?" without restarting the app.
 
 Real-machine results are recorded in [docs/verification.md](docs/verification.md).
 

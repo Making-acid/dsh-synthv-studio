@@ -8,7 +8,7 @@ DAW 集成五个工具。**
 
 [![CI](https://github.com/Making-acid/dsh-synthv-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/Making-acid/dsh-synthv-studio/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
-[![DSH](https://img.shields.io/badge/DSH-%E2%89%A50.2.0--rc.1-6c8cff.svg)](https://github.com/deepseek-ai/deepseek-harness)
+[![DSH](https://img.shields.io/badge/DSH-%E2%89%A50.2.0--rc.2-6c8cff.svg)](https://github.com/deepseek-ai/deepseek-harness)
 [![Platform](https://img.shields.io/badge/platform-Windows-0078d4.svg)](#环境要求)
 [![Synthesizer V](https://img.shields.io/badge/Synthesizer%20V%20Studio%202%20Pro-2.1.2%2B-b06cff.svg)](#环境要求)
 
@@ -23,8 +23,9 @@ Synthesizer V Studio 2 Pro 没有对外 API，只提供**应用内 Lua 脚本**�
 
 - **Windows 10/11**（在 Windows 11 上开发与验证；发现逻辑和 DAW 探测是 Windows 专用）。
 - **Synthesizer V Studio 2 Pro 2.1.2 或更新版本**，正常安装并打开一个工程；实测 2.2.1。
-- **DSH 运行时 `dsh` ≥ 0.2.0-rc.1**（实测 DSH Desktop Next 2.0.17-next 自带的 0.2.0-rc.2）。
-- Host 可用的 **Node.js 20+**（内置桥服务端是一个普通 Node 脚本）。
+- **DSH 运行时 `dsh` ≥ 0.2.0-rc.2**（实测 DSH Desktop Next 2.0.17-next 自带的 0.2.0-rc.2，
+  并已对照 0.2.2-rc.1 的插件契约逐项核对）。
+- Host 可用的 **Node.js 20+**（内置桥服务端是一个普通 Node 脚本）；注意 DSH 0.2.2 起宿主自身要求 Node ≥ 24.9。
 - 可选：任意 VST3 宿主（REAPER、Zrythm、Cubase、Studio One…）用于 DAW 编曲。
 
 ## 安装
@@ -135,7 +136,14 @@ node test/selftest.mjs          # 离线：插件接口、schema、纯逻辑
 node test/mcp-handshake.mjs     # 离线：内置服务端 MCP 握手
 node test/e2e-synthv.mjs        # 需要 SynthV + 运行中的桥；默认 dry-run
 node test/e2e-synthv.mjs --write
+
+node scripts/check-dsh.mjs      # 清单 + 五个工具对照本机宿主的 dsh-tools 契约
+                                # 并检查 engines.dsh 是否覆盖当前 DSH 版本
 ```
+
+`scripts/check-dsh.mjs`（`npm run test:dsh`）只读取本机 DSH 安装，不安装任何东西，CI 里会
+自动跳过；它执行的校验与 Host 在 `tools.register()` 时一致，所以 DSH 升级后可以先跑它
+判断「插件还能不能加载」，不必重启应用。
 
 真机验证记录见 [docs/verification.md](docs/verification.md)。
 

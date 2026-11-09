@@ -1,6 +1,6 @@
 {
   "name": "dsh-synthv-studio",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "DSH plugin for a local Synthesizer V Studio 2 Pro: discovery, a persistent in-app Lua bridge, vocal composition, advanced editing, and DAW (VST3/ARA + MIDI) integration.",
   "type": "module",
   "main": "lib/index.js",
@@ -14,6 +14,7 @@
     "lib",
     "server",
     "synthv",
+    "scripts",
     "locale",
     "assets",
     "screenshots.json",
@@ -51,12 +52,13 @@
   },
   "engines": {
     "node": ">=20",
-    "dsh": ">=0.2.0-rc.1"
+    "dsh": ">=0.2.0-rc.2 <0.3.0-0"
   },
   "scripts": {
     "test": "node test/selftest.mjs",
     "test:mcp": "node test/mcp-handshake.mjs",
-    "test:e2e": "node test/e2e-synthv.mjs"
+    "test:e2e": "node test/e2e-synthv.mjs",
+    "test:dsh": "node scripts/check-dsh.mjs"
   },
   "meta": {
     "title": "Synthesizer V Studio 2 Pro",
